@@ -6,250 +6,226 @@
 
     <title>Aashna's Learning Portfolio</title>
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
         }
 
         .section-content {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
         }
 
         .section-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-link.active {
-            border-bottom: 2px solid #3b82f6;
-            color: #1d4ed8;
-            font-weight: 600;
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-800">
 
-    <!-- ================= HEADER ================= -->
+    <!-- =========================
+         HEADER / NAVIGATION
+    ========================== -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6">
 
-    <header class="bg-white shadow-sm sticky top-0 z-10">
+            <div class="flex items-center justify-between h-16">
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div class="flex justify-between h-16 items-center">
-
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-bold text-xl text-blue-600">
-                        MyPortfolio
-                    </span>
-                </div>
+                <!-- Logo -->
+                <button
+                    onclick="showSection('home')"
+                    class="text-xl font-bold text-gray-900">
+                    MyPortfolio
+                </button>
 
                 <!-- Desktop Navigation -->
-
-                <nav class="hidden sm:flex space-x-6">
+                <nav class="hidden md:flex items-center gap-2">
 
                     <button
                         onclick="showSection('home')"
-                        id="nav-home"
-                        class="nav-link active text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200">
+                        class="nav-button px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
                         Home
                     </button>
 
                     <button
                         onclick="showSection('about')"
-                        id="nav-about"
-                        class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200">
+                        class="nav-button px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
                         About Me
                     </button>
 
                     <button
                         onclick="showSection('reflection')"
-                        id="nav-reflection"
-                        class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200">
+                        class="nav-button px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
                         MOOC Reflection
                     </button>
 
                     <button
                         onclick="showSection('balance')"
-                        id="nav-balance"
-                        class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200">
+                        class="nav-button px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
                         Where's the Balance?
                     </button>
 
                     <button
                         onclick="showSection('provocation')"
-                        id="nav-provocation"
-                        class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200">
+                        class="nav-button px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
                         My Provocation
                     </button>
 
                     <button
-                        onclick="showSection('open-thoughts')"
-                        id="nav-open-thoughts"
-                        class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200">
+                        onclick="showSection('open-learning')"
+                        class="nav-button px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
                         Open Learning Thoughts
+                    </button>
+
+                    <button
+                        onclick="showSection('manifesto')"
+                        class="nav-button px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
+                        My Manifesto
                     </button>
 
                 </nav>
 
                 <!-- Mobile Menu Button -->
+                <button
+                    onclick="toggleMobileMenu()"
+                    class="md:hidden p-2 rounded-lg hover:bg-gray-100"
+                    aria-label="Open menu">
 
-                <div class="flex items-center sm:hidden">
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav
+                id="mobileMenu"
+                class="hidden md:hidden pb-4 border-t pt-3">
+
+                <div class="flex flex-col gap-1">
 
                     <button
-                        type="button"
-                        onclick="toggleMobileMenu()"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        onclick="showSection('home'); toggleMobileMenu()"
+                        class="text-left px-3 py-2 rounded-lg hover:bg-gray-100">
+                        Home
+                    </button>
 
-                        <span class="sr-only">
-                            Open main menu
-                        </span>
+                    <button
+                        onclick="showSection('about'); toggleMobileMenu()"
+                        class="text-left px-3 py-2 rounded-lg hover:bg-gray-100">
+                        About Me
+                    </button>
 
-                        <svg
-                            class="block h-6 w-6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor">
+                    <button
+                        onclick="showSection('reflection'); toggleMobileMenu()"
+                        class="text-left px-3 py-2 rounded-lg hover:bg-gray-100">
+                        MOOC Reflection
+                    </button>
 
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
+                    <button
+                        onclick="showSection('balance'); toggleMobileMenu()"
+                        class="text-left px-3 py-2 rounded-lg hover:bg-gray-100">
+                        Where's the Balance?
+                    </button>
 
-                        </svg>
+                    <button
+                        onclick="showSection('provocation'); toggleMobileMenu()"
+                        class="text-left px-3 py-2 rounded-lg hover:bg-gray-100">
+                        My Provocation
+                    </button>
 
+                    <button
+                        onclick="showSection('open-learning'); toggleMobileMenu()"
+                        class="text-left px-3 py-2 rounded-lg hover:bg-gray-100">
+                        Open Learning Thoughts
+                    </button>
+
+                    <button
+                        onclick="showSection('manifesto'); toggleMobileMenu()"
+                        class="text-left px-3 py-2 rounded-lg hover:bg-gray-100">
+                        My Manifesto
                     </button>
 
                 </div>
 
-            </div>
+            </nav>
 
         </div>
-
-        <!-- Mobile Menu -->
-
-        <div class="sm:hidden hidden" id="mobile-menu">
-
-            <div class="pt-2 pb-3 space-y-1">
-
-                <button
-                    onclick="showSection('home'); toggleMobileMenu()"
-                    class="block w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-gray-600 hover:bg-gray-50 text-base font-medium">
-                    Home
-                </button>
-
-                <button
-                    onclick="showSection('about'); toggleMobileMenu()"
-                    class="block w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-gray-600 hover:bg-gray-50 text-base font-medium">
-                    About Me
-                </button>
-
-                <button
-                    onclick="showSection('reflection'); toggleMobileMenu()"
-                    class="block w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-gray-600 hover:bg-gray-50 text-base font-medium">
-                    MOOC Reflection
-                </button>
-
-                <button
-                    onclick="showSection('balance'); toggleMobileMenu()"
-                    class="block w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-gray-600 hover:bg-gray-50 text-base font-medium">
-                    Where's the Balance?
-                </button>
-
-                <button
-                    onclick="showSection('provocation'); toggleMobileMenu()"
-                    class="block w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-gray-600 hover:bg-gray-50 text-base font-medium">
-                    My Provocation
-                </button>
-
-                <button
-                    onclick="showSection('open-thoughts'); toggleMobileMenu()"
-                    class="block w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-gray-600 hover:bg-gray-50 text-base font-medium">
-                    Open Learning Thoughts
-                </button>
-
-            </div>
-
-        </div>
-
     </header>
 
 
-    <!-- ================= MAIN CONTENT ================= -->
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main>
 
-    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <!-- =========================
+             HOME
+        ========================== -->
+        <section id="home" class="section-content active">
 
+            <div class="max-w-6xl mx-auto px-6 py-20">
 
-        <!-- ================= HOME SECTION ================= -->
+                <div class="text-center">
 
-        <section id="home" class="section-content active text-center py-16">
-
-            <div class="max-w-3xl mx-auto">
-
-                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-6">
-
-                    Hello, I'm
-                    <span class="text-blue-600">
-                        Aashna Gupta
-                    </span>
-
-                </h1>
-
-                <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg md:text-xl">
-
-                    Welcome to my digital learning portfolio.
-                    I am exploring the intersections of technology,
-                    education, and music education.
-
-                </p>
-
-                <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-100 inline-block">
-
-                    <p class="text-lg font-medium text-blue-800">
-
-                        📚 My learning portfolio for
-                        <strong>The Place of Music in 21st Century Education</strong>
-
+                    <p class="text-sm font-semibold uppercase tracking-wider text-indigo-600 mb-4">
+                        Digital Learning Portfolio
                     </p>
 
-                </div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                        Hello, I'm Aashna Gupta
+                    </h1>
 
-                <div class="mt-10 flex justify-center gap-4 flex-wrap">
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+                        Welcome to my digital learning portfolio. I am exploring
+                        the intersections of technology, education, and music education.
+                    </p>
 
-                    <button
-                        onclick="showSection('about')"
-                        class="px-8 py-3 rounded-md text-white bg-blue-600 hover:bg-blue-700 font-medium shadow-sm">
+                    <p class="text-lg text-gray-700 mb-8">
+                        📚 My learning portfolio for
+                        <strong>The Place of Music in 21st Century Education</strong>
+                    </p>
 
-                        Learn More About Me
+                    <div class="flex flex-wrap justify-center gap-4">
 
-                    </button>
+                        <button
+                            onclick="showSection('about')"
+                            class="px-6 py-3 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-700 transition">
+                            Learn More About Me
+                        </button>
 
-                    <button
-                        onclick="showSection('open-thoughts')"
-                        class="px-8 py-3 rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100 font-medium border border-blue-200">
+                        <button
+                            onclick="showSection('manifesto')"
+                            class="px-6 py-3 border border-gray-300 bg-white rounded-lg font-medium hover:bg-gray-100 transition">
+                            My Manifesto
+                        </button>
 
-                        My Latest Reflection
-
-                    </button>
+                    </div>
 
                 </div>
 
@@ -258,61 +234,50 @@
         </section>
 
 
-        <!-- ================= ABOUT ME SECTION ================= -->
-
+        <!-- =========================
+             ABOUT ME
+        ========================== -->
         <section id="about" class="section-content">
 
-            <div class="bg-white shadow overflow-hidden sm:rounded-xl">
+            <div class="max-w-5xl mx-auto px-6 py-16">
 
-                <div class="px-4 py-5 sm:px-6 border-b border-gray-200 bg-gray-50">
+                <h2 class="text-4xl font-bold text-gray-900 mb-3">
+                    About Me
+                </h2>
 
-                    <h2 class="text-2xl font-bold text-gray-900">
-                        About Me
-                    </h2>
+                <p class="text-lg text-gray-600 mb-10">
+                    Student Bio & Background
+                </p>
 
-                    <p class="mt-1 text-sm text-gray-500">
-                        Student Bio & Background
-                    </p>
+                <div class="grid md:grid-cols-2 gap-10 items-center">
 
-                </div>
+                    <div>
 
-                <div class="px-4 py-8 sm:px-6 flex flex-col md:flex-row gap-8 items-center">
-
-                    <div class="md:w-1/3 flex justify-center">
-
-                        <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-gray-100 shadow-lg">
-
+                        <div class="rounded-2xl overflow-hidden shadow-lg">
                             <img
-                                src="https://placehold.co/400x400/3b82f6/ffffff?text=Your+Photo"
+                                src="https://placehold.co/800x500?text=Aashna+Gupta"
                                 alt="Student Photo"
-                                class="w-full h-full object-cover">
-
+                                class="w-full h-auto">
                         </div>
 
                     </div>
 
-                    <div class="md:w-2/3 text-gray-600">
+                    <div class="space-y-5 text-gray-700 leading-relaxed">
 
-                        <p class="text-lg mb-4">
-
+                        <p>
                             Hi there! I am a dedicated student with a keen interest
                             in modern educational practices and technological integration.
-
-                        </p>
-
-                        <p class="mb-4">
-
-                            My academic journey has focused on understanding how we learn
-                            and how digital tools can support that process.
-
                         </p>
 
                         <p>
+                            My academic journey has focused on understanding how we
+                            learn and how digital tools can support that process.
+                        </p>
 
+                        <p>
                             I am particularly interested in digital music production,
                             EdTech, technology-enhanced learning, and new approaches
                             to education.
-
                         </p>
 
                     </div>
@@ -324,147 +289,118 @@
         </section>
 
 
-        <!-- ================= MOOC REFLECTION ================= -->
-
+        <!-- =========================
+             MOOC REFLECTION
+        ========================== -->
         <section id="reflection" class="section-content">
 
-            <article class="bg-white shadow sm:rounded-xl overflow-hidden">
+            <div class="max-w-5xl mx-auto px-6 py-16">
 
-                <div class="px-4 py-5 sm:px-6 border-b border-gray-200 bg-gray-50">
+                <h2 class="text-4xl font-bold text-gray-900 mb-3">
+                    Course Reflection
+                </h2>
 
-                    <h2 class="text-2xl font-bold text-gray-900">
-                        Course Reflection
-                    </h2>
+                <p class="text-lg text-gray-600 mb-10">
+                    My thoughts on the MOOC and its themes.
+                </p>
 
-                    <p class="mt-1 text-sm text-gray-500">
-                        My thoughts on the MOOC and its themes.
-                    </p>
+                <div class="space-y-10">
 
-                </div>
+                    <div>
 
-                <div class="p-6 sm:p-8">
-
-                    <div class="text-gray-700">
-
-                        <h3 class="text-xl font-semibold text-gray-900 mb-3 border-l-4 border-blue-500 pl-3">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">
                             The MOOC Experience
                         </h3>
 
-                        <p class="mb-6">
-
+                        <p class="text-gray-700 leading-relaxed">
                             Participating in
                             <strong>The Place of Music in 21st Century Education</strong>
                             on Coursera has been a highly enriching experience.
                             The modules introduced me to modern educational approaches
                             and encouraged me to think critically about how technology
                             is changing music education.
-
                         </p>
 
+                    </div>
 
-                        <h3 class="text-xl font-semibold text-gray-900 mb-3 border-l-4 border-blue-500 pl-3">
 
+                    <div>
+
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">
                             Reflections on Technology and Education
-
                         </h3>
 
-                        <p class="mb-4">
-
+                        <p class="text-gray-700 leading-relaxed">
                             The intersection of technology and education is rapidly
                             evolving. Digital tools can make learning more interactive,
                             personalized, and accessible.
-
                         </p>
 
-                        <p class="mb-6">
-
+                        <p class="text-gray-700 leading-relaxed mt-4">
                             In music education, tools such as digital audio workstations,
                             notation software, online resources, and interactive learning
-                            platforms allow students to experiment and learn at their
-                            own pace.
-
+                            platforms allow students to experiment and learn at their own pace.
                         </p>
 
                     </div>
 
 
-                    <!-- IMAGE -->
+                    <div>
 
-                    <div class="my-8">
-
-                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4">
                             Visualizing the Concept
                         </h4>
 
-                        <figure class="bg-gray-100 rounded-lg p-2 border border-gray-200 inline-block shadow-sm">
+                        <img
+                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                            alt="Classroom and Technology"
+                            class="w-full rounded-2xl shadow-lg">
 
-                            <img
-                                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                alt="Classroom and Technology"
-                                class="rounded-md w-full max-w-2xl mx-auto h-auto object-cover"
-                                onerror="this.src='https://placehold.co/800x400/e2e8f0/475569?text=Educational+Technology+Image'">
-
-                            <figcaption class="text-center text-sm text-gray-500 mt-2 italic">
-
-                                The evolving landscape of modern education.
-
-                            </figcaption>
-
-                        </figure>
+                        <p class="text-sm text-gray-500 mt-2">
+                            The evolving landscape of modern education.
+                        </p>
 
                     </div>
 
 
-                    <!-- EDUTOPIA -->
+                    <div>
 
-                    <div class="my-8 p-5 bg-blue-50 rounded-lg border border-blue-100">
-
-                        <h4 class="text-sm font-bold text-blue-800 uppercase tracking-wider mb-2">
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4">
                             Further Reading
                         </h4>
 
-                        <p class="text-gray-700">
-
+                        <p class="text-gray-700 mb-3">
                             To explore more about technology integration in education:
-
                         </p>
 
                         <a
-                            href="https://www.edutopia.org/technology-integration"
+                            href="https://www.edutopia.org/technology-integration-guide"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-blue-600 font-semibold hover:underline">
-
+                            class="text-indigo-600 font-medium hover:underline">
                             Edutopia: Technology Integration →
-
                         </a>
 
                     </div>
 
 
-                    <!-- YOUTUBE -->
+                    <div>
 
-                    <div class="my-8">
-
-                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4">
                             Related Media
                         </h4>
 
-                        <p class="text-gray-600 mb-4">
-
-                            A related video discussing the future of learning
-                            and technology.
-
+                        <p class="text-gray-700 mb-5">
+                            A related video discussing the future of learning and technology.
                         </p>
 
-                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <div class="aspect-video rounded-2xl overflow-hidden shadow-lg">
 
                             <iframe
-                                style="position:absolute; top:0; left:0; width:100%; height:100%;"
-                                src="https://www.youtube.com/embed/GGY17VD_9Bs"
-                                title="YouTube video player"
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                title="Related learning video"
                                 frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                             </iframe>
 
@@ -474,623 +410,623 @@
 
                 </div>
 
-            </article>
+            </div>
 
         </section>
 
 
-        <!-- ================= WHERE'S THE BALANCE ================= -->
-
+        <!-- =========================
+             WHERE'S THE BALANCE
+        ========================== -->
         <section id="balance" class="section-content">
 
-            <article class="bg-white shadow sm:rounded-xl overflow-hidden">
+            <div class="max-w-4xl mx-auto px-6 py-16">
 
-                <div class="px-4 py-5 sm:px-6 border-b border-gray-200 bg-gray-50">
+                <h2 class="text-4xl font-bold text-gray-900 mb-3">
+                    Where's the Balance?
+                </h2>
 
-                    <h2 class="text-2xl font-bold text-gray-900">
-                        Where's the Balance?
-                    </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Popular Music and Traditional Music Education
+                </p>
 
-                    <p class="mt-1 text-sm text-gray-500">
-                        Popular Music and Traditional Music Education
+                <div class="bg-white rounded-2xl shadow-sm p-8">
+
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Where’s the Balance? Popular Music and Traditional Music Education
+                    </h3>
+
+                    <p class="text-gray-600 italic mb-6">
+                        A reflection on balancing students’ musical cultures with
+                        traditional music skills, literacy, and Western art music
+                        in 21st-century education.
                     </p>
 
-                </div>
+                    <div class="space-y-5 text-gray-700 leading-relaxed">
 
-                <div class="p-6 sm:p-8 text-gray-700">
+                        <p>
+                            I believe music education needs a balance between traditional
+                            musical skills and the music students already experience in
+                            their everyday lives. Traditional approaches provide important
+                            foundations such as musical literacy, harmony, rhythm, listening,
+                            and performance skills.
+                        </p>
 
-                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-5 mb-8">
+                        <p>
+                            At the same time, students should have opportunities to explore
+                            popular music and their own musical cultures. When learners are
+                            allowed to work with music that is meaningful to them, they can
+                            become more engaged and take greater ownership of their learning.
+                        </p>
 
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">
+                        <p>
+                            James Humberstone's discussions about Western art music education
+                            made me think about the importance of traditional musical knowledge.
+                            However, Lucy Green's work on informal music learning also shows
+                            the value of allowing students to learn through music that they
+                            already know and enjoy.
+                        </p>
 
-                            Where’s the Balance?
-                            Popular Music and Traditional Music Education
+                        <p>
+                            Therefore, I do not think traditional music education should disappear.
+                            Instead, it should become more flexible. Students can learn theory
+                            and traditional skills while also composing, performing, producing,
+                            and exploring popular music.
+                        </p>
 
-                        </h3>
-
-                        <p class="text-gray-600">
-
-                            A reflection on balancing students’ musical cultures
-                            with traditional music skills, literacy, and Western
-                            art music in 21st-century education.
-
+                        <p>
+                            The goal should be to create a music education that respects both
+                            musical heritage and students' contemporary musical identities.
                         </p>
 
                     </div>
 
-
-                    <p class="mb-5">
-
-                        I believe music education needs a balance between
-                        traditional musical skills and the music students already
-                        experience in their everyday lives. Traditional approaches
-                        provide important foundations such as musical literacy,
-                        harmony, rhythm, listening, and performance skills.
-
-                    </p>
-
-                    <p class="mb-5">
-
-                        At the same time, students should have opportunities to
-                        explore popular music and their own musical cultures.
-                        When learners are allowed to work with music that is
-                        meaningful to them, they can become more engaged and
-                        take greater ownership of their learning.
-
-                    </p>
-
-                    <p class="mb-5">
-
-                        James Humberstone's discussions about Western art music
-                        education made me think about the importance of traditional
-                        musical knowledge. However, Lucy Green's work on informal
-                        music learning also shows the value of allowing students
-                        to learn through music that they already know and enjoy.
-
-                    </p>
-
-                    <p>
-
-                        Therefore, I do not think traditional music education
-                        should disappear. Instead, it should become more flexible.
-                        Students can learn theory and traditional skills while
-                        also composing, performing, producing, and exploring
-                        popular music. The goal should be to create a music
-                        education that respects both musical heritage and
-                        students' contemporary musical identities.
-
-                    </p>
-
                 </div>
 
-            </article>
+            </div>
 
         </section>
 
 
-        <!-- ================= MY PROVOCATION ================= -->
-
+        <!-- =========================
+             MY PROVOCATION
+        ========================== -->
         <section id="provocation" class="section-content">
 
-            <article class="bg-white shadow sm:rounded-xl overflow-hidden">
+            <div class="max-w-4xl mx-auto px-6 py-16">
 
-                <div class="px-4 py-5 sm:px-6 border-b border-gray-200 bg-gray-50">
+                <h2 class="text-4xl font-bold text-gray-900 mb-3">
+                    My Provocation
+                </h2>
 
-                    <h2 class="text-2xl font-bold text-gray-900">
-                        My Provocation
-                    </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Technology Should Serve Music Education — Not Replace It
+                </p>
 
-                    <p class="mt-1 text-sm text-gray-500">
+                <div class="bg-white rounded-2xl shadow-sm p-8">
+
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-5">
                         Technology Should Serve Music Education — Not Replace It
+                    </h3>
+
+                    <p class="text-gray-600 italic mb-6">
+                        A personal provocation about using digital technology
+                        thoughtfully in music education.
                     </p>
 
-                </div>
+                    <div class="space-y-5 text-gray-700 leading-relaxed">
 
-                <div class="p-6 sm:p-8 text-gray-700">
+                        <p>
+                            Technology has changed how music can be created, performed,
+                            recorded, shared, and learned. Digital audio workstations,
+                            notation software, online tutorials, recording tools, and
+                            interactive platforms can give learners opportunities that
+                            may not have been possible in a traditional classroom.
+                        </p>
 
-                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-5 mb-8">
+                        <p>
+                            However, I question the assumption that adding more technology
+                            automatically makes music education better. Technology is only
+                            valuable when it improves the learning experience. The important
+                            question should be: What musical learning does this technology
+                            make possible or easier?
+                        </p>
 
-                        <h3 class="text-xl font-bold text-blue-800">
+                        <p>
+                            Research on technology-enhanced music learning has made me think
+                            more critically about this issue. Technology can support performance,
+                            composition, collaboration, experimentation, and feedback, but
+                            teachers still need to consider pedagogy, musical expression,
+                            creativity, and meaningful interaction.
+                        </p>
 
-                            Technology Should Serve Music Education —
-                            Not Replace It
+                        <p>
+                            My own view has therefore changed from seeing technology as
+                            automatically positive to seeing it as a tool that needs a clear
+                            educational purpose. A DAW should not be used simply because it
+                            is modern. It should be used when it helps students create,
+                            understand, communicate, or reflect on music in a meaningful way.
+                        </p>
 
-                        </h3>
-
-                        <p class="mt-2 text-gray-600">
-
-                            A personal provocation about using digital technology
-                            thoughtfully in music education.
-
+                        <p class="font-semibold text-gray-900">
+                            My provocation is simple: Music education should not ask how much
+                            technology we can add. It should ask what technology can help
+                            students learn that matters musically.
                         </p>
 
                     </div>
 
 
-                    <p class="mb-5">
+                    <div class="mt-10 pt-8 border-t">
 
-                        Technology has changed how music can be created,
-                        performed, recorded, shared, and learned. Digital audio
-                        workstations, notation software, online tutorials,
-                        recording tools, and interactive platforms can give
-                        learners opportunities that may not have been possible
-                        in a traditional classroom.
-
-                    </p>
-
-                    <p class="mb-5">
-
-                        However, I question the assumption that adding more
-                        technology automatically makes music education better.
-                        Technology is only valuable when it improves the learning
-                        experience. The important question should be:
-                        <strong>
-                            What musical learning does this technology make
-                            possible or easier?
-                        </strong>
-
-                    </p>
-
-                    <p class="mb-5">
-
-                        Research on technology-enhanced music learning has made
-                        me think more critically about this issue. Technology
-                        can support performance, composition, collaboration,
-                        experimentation, and feedback, but teachers still need
-                        to consider pedagogy, musical expression, creativity,
-                        and meaningful interaction.
-
-                    </p>
-
-                    <p class="mb-5">
-
-                        My own view has therefore changed from seeing technology
-                        as automatically positive to seeing it as a tool that
-                        needs a clear educational purpose. A DAW should not be
-                        used simply because it is modern. It should be used when
-                        it helps students create, understand, communicate, or
-                        reflect on music in a meaningful way.
-
-                    </p>
-
-                    <p>
-
-                        My provocation is simple:
-
-                        <strong>
-                            Music education should not ask how much technology
-                            we can add. It should ask what technology can help
-                            students learn that matters musically.
-                        </strong>
-
-                    </p>
-
-
-                    <!-- RESEARCH SOURCE -->
-
-                    <div class="mt-8 p-5 bg-gray-50 border border-gray-200 rounded-lg">
-
-                        <h4 class="font-bold text-gray-900 mb-2">
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
                             Research Reference
                         </h4>
 
-                        <p class="text-sm text-gray-600 mb-3">
-
-                            Mohammadian, R., Pourroostaei Ardakani, S.,
-                            & Zavaraki, E. Z. (2026).
-                            <em>
-                                A systematic review of technology-enhanced
-                                music learning models: Impacts on music education.
-                            </em>
-                            Computers and Education Open, 10, 100354.
-
+                        <p class="text-gray-700 mb-4">
+                            Mohammadian, R., Pourroostaei Ardakani, S., & Zavaraki,
+                            E. Z. (2026). A systematic review of technology-enhanced
+                            music learning models: Impacts on music education.
+                            <em>Computers and Education Open, 10</em>, 100354.
                         </p>
 
                         <a
                             href="https://www.sciencedirect.com/science/article/pii/S266655732600025X"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-blue-600 font-semibold hover:underline">
-
+                            class="text-indigo-600 font-medium hover:underline">
                             Read the research →
-
                         </a>
 
                     </div>
 
                 </div>
 
-            </article>
+            </div>
 
         </section>
 
 
-        <!-- ================= OPEN LEARNING THOUGHTS ================= -->
+        <!-- =========================
+             OPEN LEARNING THOUGHTS
+        ========================== -->
+        <section id="open-learning" class="section-content">
 
-        <section id="open-thoughts" class="section-content">
+            <div class="max-w-4xl mx-auto px-6 py-16">
 
-            <article class="bg-white shadow sm:rounded-xl overflow-hidden">
+                <h2 class="text-4xl font-bold text-gray-900 mb-3">
+                    My Thoughts on Open Learning and Music Education
+                </h2>
 
-                <div class="px-4 py-5 sm:px-6 border-b border-gray-200 bg-gray-50">
+                <p class="text-lg text-gray-600 mb-10">
+                    Reflection on Module Content
+                </p>
 
-                    <h2 class="text-2xl font-bold text-gray-900">
 
-                        My Thoughts on Open Learning and Music Education
+                <div class="bg-white rounded-2xl shadow-sm p-8">
 
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">
+                        Share Your Thoughts Openly
+                    </h3>
+
+                    <p class="text-gray-600 mb-8">
+                        My reflections on technology, open learning, music education,
+                        and Project Based Learning.
+                    </p>
+
+
+                    <!-- Question 1 -->
+                    <div class="mb-8">
+
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                            1. DAWs, sequencers and notation software
+                        </h4>
+
+                        <p class="text-gray-700 leading-relaxed">
+                            I would like to explore DAWs and step sequencers further
+                            because they provide creative ways to compose, arrange,
+                            and experiment with music. These technologies can also
+                            make music creation more accessible to learners who may
+                            not have extensive traditional instrumental training.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Question 2 -->
+                    <div class="mb-8">
+
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                            2. DJ-producers and sophisticated musical skills
+                        </h4>
+
+                        <p class="text-gray-700 leading-relaxed">
+                            Yes, I have been persuaded that DJ-producers have many
+                            sophisticated musical skills. Creating electronic music
+                            involves rhythm, harmony, structure, listening, sound
+                            selection, arrangement, mixing, and technological
+                            knowledge. The course helped me understand that using
+                            technology does not make the music-making process simple.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Question 3 -->
+                    <div class="mb-8">
+
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                            3. Has learning gone "OPEN"?
+                        </h4>
+
+                        <p class="text-gray-700 leading-relaxed">
+                            I agree with David Price that learning has increasingly
+                            gone "OPEN". Online platforms allow people to access
+                            courses, tutorials, resources, and learning communities
+                            beyond traditional classrooms. However, I think open
+                            learning works best when learners have the motivation
+                            and guidance to use these resources effectively.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Question 4 -->
+                    <div class="mb-8">
+
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                            4. Examples of OPEN learning
+                        </h4>
+
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            One example I found particularly useful was OpenLearn's
+                            <em>Teaching Secondary Music</em> course. It is a free
+                            course exploring musical learning, different teaching
+                            approaches, and formal, non-formal, and informal learning.
+                        </p>
+
+                        <a
+                            href="https://www.open.edu/openlearn/education-development/teaching-secondary-music/content-section-0"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-indigo-600 font-medium hover:underline">
+                            Explore OpenLearn Course →
+                        </a>
+
+                        <p class="text-gray-700 leading-relaxed mt-5">
+                            I also found platforms such as Khan Academy useful because
+                            they demonstrate how digital platforms can make educational
+                            resources widely accessible.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Question 5 -->
+                    <div class="mb-8">
+
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                            5. Project Based Learning and Music Education
+                        </h4>
+
+                        <p class="text-gray-700 leading-relaxed">
+                            Project Based Learning can make music education more practical,
+                            creative, and collaborative. Students can compose, perform,
+                            produce, or record a project while developing problem-solving
+                            and teamwork skills. At the same time, music education can
+                            contribute creativity, communication, self-expression, and
+                            critical listening to Project Based Learning and education
+                            more broadly.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Final Reflection -->
+                    <div class="pt-6 border-t">
+
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                            Final Reflection
+                        </h4>
+
+                        <p class="text-gray-700 leading-relaxed">
+                            Overall, this module made me see technology and open learning
+                            not simply as replacements for traditional education, but as
+                            tools that can expand how, where, and with whom music can be learned.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Featured Resource -->
+                    <div class="mt-10 p-6 bg-gray-50 rounded-xl">
+
+                        <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                            Featured OPEN Learning Resource
+                        </h4>
+
+                        <p class="font-medium text-gray-900 mb-2">
+                            Teaching Secondary Music – OpenLearn
+                        </p>
+
+                        <p class="text-gray-700 mb-4">
+                            A free OpenLearn course exploring musical learning,
+                            teaching approaches, musical knowledge, creativity,
+                            and different forms of music education.
+                        </p>
+
+                        <a
+                            href="https://www.open.edu/openlearn/education-development/teaching-secondary-music/content-section-0"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-indigo-600 font-medium hover:underline">
+                            Visit OpenLearn →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MY MANIFESTO
+        ========================== -->
+        <section id="manifesto" class="section-content">
+
+            <div class="max-w-4xl mx-auto px-6 py-16">
+
+                <div class="text-center mb-12">
+
+                    <p class="text-sm font-semibold uppercase tracking-wider text-indigo-600 mb-3">
+                        Final Course Reflection
+                    </p>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        My Manifesto for Music Education
                     </h2>
 
-                    <p class="mt-1 text-sm text-gray-500">
-
-                        Reflection on Module Content
-
+                    <p class="text-lg text-gray-600">
+                        Music education should be creative, inclusive and meaningful.
                     </p>
 
                 </div>
 
 
-                <div class="p-6 sm:p-8 text-gray-700">
+                <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10">
 
-                    <!-- INTRO -->
-
-                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-5 mb-8">
-
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">
-
-                            Share Your Thoughts Openly
-
-                        </h3>
-
-                        <p class="text-gray-600">
-
-                            My reflections on technology, open learning,
-                            music education, and Project Based Learning.
-
-                        </p>
-
-                    </div>
-
-
-                    <!-- QUESTION 1 -->
-
+                    <!-- Introduction -->
                     <div class="mb-8">
 
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">
-
-                            1. DAWs, sequencers and notation software
-
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                            Music Education Should Be Creative, Inclusive and Meaningful
                         </h3>
 
-                        <p>
-
-                            I would like to explore DAWs and step sequencers
-                            further because they provide creative ways to
-                            compose, arrange, and experiment with music.
-                            These technologies can also make music creation
-                            more accessible to learners who may not have
-                            extensive traditional instrumental training.
-
+                        <p class="text-gray-700 leading-relaxed">
+                            I believe music education should give every student the
+                            opportunity to experience music in a way that connects
+                            with their interests, culture and everyday life. Music
+                            education should not be limited to one genre, one tradition,
+                            or one way of learning.
                         </p>
 
                     </div>
 
 
-                    <!-- QUESTION 2 -->
-
+                    <!-- Informal Learning -->
                     <div class="mb-8">
 
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">
-
-                            2. DJ-producers and sophisticated musical skills
-
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                            Learning Through Students' Musical Interests
                         </h3>
 
-                        <p>
-
-                            Yes, I have been persuaded that DJ-producers
-                            have many sophisticated musical skills. Creating
-                            electronic music involves rhythm, harmony,
-                            structure, listening, sound selection, arrangement,
-                            mixing, and technological knowledge. The course
-                            helped me understand that using technology does
-                            not make the music-making process simple.
-
+                        <p class="text-gray-700 leading-relaxed">
+                            One idea from this course that I would bring into my own
+                            practice is informal learning. Students could choose music
+                            that they enjoy, learn parts of songs by ear, work with
+                            friends and combine listening, performing, composing and
+                            improvising. This can give students more ownership of their
+                            learning while allowing the teacher to guide and support them.
                         </p>
 
                     </div>
 
 
-                    <!-- QUESTION 3 -->
-
+                    <!-- Technology -->
                     <div class="mb-8">
 
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">
-
-                            3. Has learning gone "OPEN"?
-
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                            Technology Should Support Music Education
                         </h3>
 
-                        <p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Technology should support music education, not replace musical
+                            thinking. I want to develop my skills with DAWs, sequencing,
+                            recording and digital music-making so that I can use technology
+                            as a creative tool.
+                        </p>
 
-                            I agree with David Price that learning has
-                            increasingly gone "OPEN". Online platforms allow
-                            people to access courses, tutorials, resources,
-                            and learning communities beyond traditional
-                            classrooms. However, I think open learning works
-                            best when learners have the motivation and
-                            guidance to use these resources effectively.
-
+                        <p class="text-gray-700 leading-relaxed mt-4">
+                            Students could record an acoustic performance and then experiment
+                            with beats, samples, effects or electronic sounds. This would allow
+                            traditional musical skills and new technologies to work together.
                         </p>
 
                     </div>
 
 
-                    <!-- QUESTION 4 -->
-
+                    <!-- PBL -->
                     <div class="mb-8">
 
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">
-
-                            4. Examples of OPEN learning
-
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                            Project-Based and Collaborative Learning
                         </h3>
 
-                        <p class="mb-4">
-
-                            One example I found particularly useful was
-                            OpenLearn's
-                            <strong>Teaching Secondary Music</strong>
-                            course. It is a free course exploring musical
-                            learning, different teaching approaches, and
-                            formal, non-formal, and informal learning.
-
+                        <p class="text-gray-700 leading-relaxed">
+                            I also believe music education should be connected to
+                            project-based learning. Students could create a song,
+                            produce a digital composition, collaborate on a performance,
+                            or investigate music from their own culture.
                         </p>
 
-                        <a
-                            href="https://www.open.edu/openlearn/education-development/teaching-secondary-music/content-section-0"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center px-5 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-
-                            Explore OpenLearn Course →
-
-                        </a>
-
-                        <p class="mt-4">
-
-                            I also found platforms such as Khan Academy
-                            useful because they demonstrate how digital
-                            platforms can make educational resources
-                            widely accessible.
-
+                        <p class="text-gray-700 leading-relaxed mt-4">
+                            These projects can develop creativity, collaboration,
+                            communication, problem-solving and independence.
                         </p>
 
                     </div>
 
 
-                    <!-- QUESTION 5 -->
-
+                    <!-- Action Plan -->
                     <div class="mb-8">
 
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">
-
-                            5. Project Based Learning and Music Education
-
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                            My Plan for Practice
                         </h3>
 
-                        <p>
+                        <p class="text-gray-700 leading-relaxed">
+                            My first step will be to create one small technology-supported
+                            music project. I would begin with a familiar song or musical
+                            idea chosen by students, allow them to experiment individually
+                            or in groups, and then use a DAW to develop their ideas into
+                            a final performance or composition.
+                        </p>
 
-                            Project Based Learning can make music education
-                            more practical, creative, and collaborative.
-                            Students can compose, perform, produce, or record
-                            a project while developing problem-solving and
-                            teamwork skills. At the same time, music education
-                            can contribute creativity, communication,
-                            self-expression, and critical listening to
-                            Project Based Learning and education more broadly.
-
+                        <p class="text-gray-700 leading-relaxed mt-4">
+                            After the project, I would reflect on what worked, what students
+                            enjoyed, and what could be improved. This would help me gradually
+                            develop a teaching approach that uses technology with a clear
+                            educational purpose.
                         </p>
 
                     </div>
 
 
-                    <!-- CONCLUSION -->
+                    <!-- Pluralism -->
+                    <div class="mb-8">
 
-                    <div class="mt-10 p-6 bg-gray-50 rounded-lg border border-gray-200">
-
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">
-
-                            Final Reflection
-
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                            A Pluralist Approach
                         </h3>
 
-                        <p>
+                        <p class="text-gray-700 leading-relaxed">
+                            I want my classroom to recognise that students can learn from
+                            many different musical traditions and genres. Popular music,
+                            traditional music, world music, electronic music and students'
+                            own musical cultures can all have a place in music education.
+                        </p>
 
-                            Overall, this module made me see technology and
-                            open learning not simply as replacements for
-                            traditional education, but as tools that can
-                            expand how, where, and with whom music can be
-                            learned.
-
+                        <p class="text-gray-700 leading-relaxed mt-4">
+                            Rather than treating these approaches as competing alternatives,
+                            I would like students to explore how they can connect and influence
+                            one another.
                         </p>
 
                     </div>
 
 
-                    <!-- OPEN LEARNING RESOURCE -->
+                    <!-- Final Manifesto -->
+                    <div class="border-t pt-8">
 
-                    <div class="mt-8 p-6 border border-blue-200 bg-blue-50 rounded-lg">
-
-                        <h3 class="text-lg font-bold text-blue-800 mb-2">
-
-                            Featured OPEN Learning Resource
-
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                            My Manifesto
                         </h3>
 
-                        <p class="text-gray-700 mb-3">
-
-                            <strong>Teaching Secondary Music – OpenLearn</strong>
-
+                        <p class="text-gray-700 leading-relaxed">
+                            My goal is not to remove traditional music education, but to make
+                            it more flexible and relevant. I want my classroom to be a place
+                            where students can bring their own musical identities, discover
+                            unfamiliar music, use technology creatively and learn from one
+                            another.
                         </p>
 
-                        <p class="text-gray-600 mb-4">
+                        <div class="mt-8 p-6 bg-gray-50 rounded-xl border-l-4 border-gray-900">
 
-                            A free OpenLearn course exploring musical learning,
-                            teaching approaches, musical knowledge, creativity,
-                            and different forms of music education.
+                            <p class="text-xl font-semibold text-gray-900 leading-relaxed">
+                                Music education should give students the skills to understand
+                                music, the freedom to create it, and the confidence to make
+                                it their own.
+                            </p>
 
-                        </p>
-
-                        <a
-                            href="https://www.open.edu/openlearn/education-development/teaching-secondary-music/content-section-0"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-blue-700 font-semibold hover:underline">
-
-                            Visit OpenLearn →
-
-                        </a>
+                        </div>
 
                     </div>
 
                 </div>
 
-            </article>
+            </div>
 
         </section>
-
 
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="bg-gray-900 text-white mt-16">
 
-    <footer class="bg-gray-800 text-white py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 py-8">
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-center">
 
-            <p class="text-sm text-gray-400">
+                <p class="font-semibold mb-2">
+                    Aashna's Learning Portfolio
+                </p>
 
-                &copy;
+                <p class="text-gray-400 text-sm">
+                    Created for Coursera Assignment —
+                    The Place of Music in 21st Century Education
+                </p>
 
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
+                <p class="text-gray-500 text-xs mt-4">
+                    © Aashna Gupta. All rights reserved.
+                </p>
 
-                Aashna Gupta.
-                Created for Coursera Assignment.
-
-            </p>
+            </div>
 
         </div>
 
     </footer>
 
 
-    <!-- ================= JAVASCRIPT ================= -->
-
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
     <script>
 
         function showSection(sectionId) {
 
-            // Hide all sections
+            // Hide every section
+            const sections = document.querySelectorAll('.section-content');
 
-            const sections =
-                document.querySelectorAll('.section-content');
-
-            sections.forEach(section => {
-
+            sections.forEach(function(section) {
                 section.classList.remove('active');
-
             });
-
-
-            // Remove active state from navigation
-
-            const navLinks =
-                document.querySelectorAll('.nav-link');
-
-            navLinks.forEach(link => {
-
-                link.classList.remove(
-                    'active',
-                    'text-gray-900'
-                );
-
-                link.classList.add(
-                    'text-gray-500'
-                );
-
-            });
-
 
             // Show selected section
+            const selectedSection = document.getElementById(sectionId);
 
-            const activeSection =
-                document.getElementById(sectionId);
-
-            if (activeSection) {
-
-                activeSection.classList.add('active');
-
+            if (selectedSection) {
+                selectedSection.classList.add('active');
             }
-
-
-            // Highlight selected navigation item
-
-            const activeNav =
-                document.getElementById(
-                    'nav-' + sectionId
-                );
-
-            if (activeNav) {
-
-                activeNav.classList.add(
-                    'active',
-                    'text-gray-900'
-                );
-
-                activeNav.classList.remove(
-                    'text-gray-500'
-                );
-
-            }
-
 
             // Scroll to top
-
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-
         }
 
 
         function toggleMobileMenu() {
 
-            const mobileMenu =
-                document.getElementById(
-                    'mobile-menu'
-                );
+            const mobileMenu = document.getElementById('mobileMenu');
 
-            if (
-                mobileMenu.classList.contains(
-                    'hidden'
-                )
-            ) {
-
-                mobileMenu.classList.remove(
-                    'hidden'
-                );
-
-            } else {
-
-                mobileMenu.classList.add(
-                    'hidden'
-                );
-
-            }
-
+            mobileMenu.classList.toggle('hidden');
         }
 
     </script>
